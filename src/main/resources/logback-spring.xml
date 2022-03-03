@@ -37,15 +37,4 @@
         <appender-ref ref="Console" />
     </root>
 
-    <logger name="com.example" level="error" additivity="false">
-        <appender-ref ref="RollingFile" />
-        <appender-ref ref="Console" />
-    </logger>
-
-    <logger name="com.example.forumwebsocket.filter.RequestLoggingFilterConfig">
-        <level value="DEBUG" />
-        <appender-ref ref="RollingFile" />
-        <appender-ref ref="Console" />
-    </logger>
-
 </configuration>

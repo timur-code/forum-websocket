@@ -33,8 +33,7 @@ public class PostController {
     @PostMapping("/create")
     public String createPost(@ModelAttribute("postRequest") PostRequest postRequest, HttpServletRequest request)
     {
-        log.info(request.toString());
-        Long user = Long.parseLong(postRequest.getUserId());
+        Long user = postRequest.getUserId();
         try {
             Long postId = postService.addPost(user, postRequest);
             return "redirect:/post/" + postId;
@@ -47,7 +46,6 @@ public class PostController {
 
     @GetMapping("/create")
     public String createPostPage(Model model, HttpServletRequest request) {
-        log.info(request.toString());
         return "createPost";
     }
 

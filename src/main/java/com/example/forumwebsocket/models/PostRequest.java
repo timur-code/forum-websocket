@@ -12,7 +12,7 @@ import lombok.ToString;
 public class PostRequest {
     private String title;
     private String postText;
-    private String userId;
+    private Long userId;
     private int visibility;
     private boolean areCommentsDisabled;
 

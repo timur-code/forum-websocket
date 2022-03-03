@@ -9,12 +9,14 @@ import com.example.forumwebsocket.repository.CommentRepository;
 import com.example.forumwebsocket.repository.PostRepository;
 import com.example.forumwebsocket.repository.UserRepository;
 import javassist.NotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class PostService {
     @Autowired
@@ -31,7 +33,9 @@ public class PostService {
         try {
             addUserToPost(userId, newPost);
             addPostToUser(userId, newPost);
+            log.info("CREATE POST: ", newPost.toString());
             postRepository.save(newPost);
+
             return newPost.getId();
         } catch (Exception ex) {
             throw ex;
@@ -49,6 +53,7 @@ public class PostService {
             if (post.getUser().equals(user) || userService.checkIfAdmin(user.getId())) {
                 post.setPostText(postText);
                 post.setTitle(title);
+                log.info("EDIT POST: ", post.toString());
                 postRepository.save(post);
             } else {
                 throw new Exception("Not the creator or admin, so cannot edit");
